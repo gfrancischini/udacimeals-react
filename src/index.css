@@ -28,6 +28,8 @@ li {
 .subheader {
   font-size: 30px;
   font-weight: 300;
+  margin: 10px 10px 30px 10px;
+  text-align: center
 }
 
 .icon-btn {
@@ -111,10 +113,17 @@ li {
   border-radius: 3px;
   box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
   min-width: 500px;
+  display: flex
+}
+
+.search-container {
+  display: flex;
+  flex: 1;
 }
 
 .search-container h3 {
   text-align: center;
+  
 }
 
 .food-input {
@@ -190,4 +199,21 @@ li {
   text-decoration: underline;
   font-size: 14px;
   margin-top: 5px;
+}
+
+
+
+.food-search-container {
+  display:flex;
+  flex-direction:column;
+  flex-grow:1
+}
+
+
+
+.food-search-loading {
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  display: flex;
 }

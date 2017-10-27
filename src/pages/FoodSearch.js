@@ -30,38 +30,50 @@ export class FoodSearch extends React.Component {
     }
 
     render() {
-        const { loadingFood, food } = this.state
+        let { loadingFood, food } = this.state
         const { onFoodSelect } = this.props;
+        //loadingFood = true;
+        //food = [{label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"},{label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"},{label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}];
         return (
-            <div>
+            <div className='food-search-container'>
+                <h3 className='subheader'>
+                    Find a meal
+                </h3>
+                <div className='search'>
+                    <input
+                        className='food-input'
+                        type='text'
+                        placeholder='Search Foods'
+                        ref={(input) => this.input = input}
+                    />
+                    <button
+                        className='icon-btn'
+                        onClick={this.searchFood}>
+                        <ArrowRightIcon size={30} />
+                    </button>
+                </div>
+                
                 {loadingFood === true
-                    ? <Loading delay={200} type='spin' color='#222' className='loading' />
-                    : <div className='search-container'>
-                        <h3 className='subheader'>
-                            Find a meal.
-                  </h3>
-                        <div className='search'>
-                            <input
-                                className='food-input'
-                                type='text'
-                                placeholder='Search Foods'
-                                ref={(input) => this.input = input}
-                            />
-                            <button
-                                className='icon-btn'
-                                onClick={this.searchFood}>
-                                <ArrowRightIcon size={30} />
-                            </button>
+                    ? (
+                        <div className="food-search-loading">
+                            <Loading delay={200} type='spin' color='#222' className='loading' />
                         </div>
-                        {food !== null && (
-                            <FoodList
-                                food={food}
-                                onSelect={(recipe) => {
-                                    onFoodSelect(recipe)
-                                }}
-                            />)}
-                    </div>}
-            </div>)
+                    ) : (
+                        <div className='search-container'>
+
+
+                            {food !== null && (
+                                <FoodList
+                                    food={food}
+                                    onSelect={(recipe) => {
+                                        onFoodSelect(recipe)
+                                    }}
+                                />)}
+                        </div>
+                    )
+                }
+            </div>
+        )
     }
 
 }
