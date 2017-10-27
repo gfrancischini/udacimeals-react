@@ -29,11 +29,15 @@ export class FoodSearch extends React.Component {
             })))
     }
 
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.searchFood(e);
+        }
+    }
+
     render() {
-        let { loadingFood, food } = this.state
+        const { loadingFood, food } = this.state
         const { onFoodSelect } = this.props;
-        //loadingFood = true;
-        //food = [{label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"},{label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"},{label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}, {label:"test"}];
         return (
             <div className='food-search-container'>
                 <h3 className='subheader'>
@@ -44,6 +48,7 @@ export class FoodSearch extends React.Component {
                         className='food-input'
                         type='text'
                         placeholder='Search Foods'
+                        onKeyPress={this.handleKeyPress}
                         ref={(input) => this.input = input}
                     />
                     <button
@@ -52,7 +57,7 @@ export class FoodSearch extends React.Component {
                         <ArrowRightIcon size={30} />
                     </button>
                 </div>
-                
+
                 {loadingFood === true
                     ? (
                         <div className="food-search-loading">

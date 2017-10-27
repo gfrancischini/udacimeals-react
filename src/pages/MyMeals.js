@@ -40,10 +40,10 @@ class MyMeals1 extends Component {
 
     render() {
         const { foodModalOpen } = this.state;
-        const {calendar} = this.props;
+        const { calendar, removeMeal } = this.props;
         return (
             <div className="container">
-                <CalendarMealDayList calendar={calendar} selectMeal={this.selectMeal} />
+                <CalendarMealDayList calendar={calendar} selectMeal={this.selectMeal} removeMeal={removeMeal} />
 
                 <Modal
                     className='modal'
@@ -59,31 +59,31 @@ class MyMeals1 extends Component {
     }
 }
 
-function mapStateToProps ({ food, calendar }) {
+function mapStateToProps({ food, calendar }) {
     const dayOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-  
+
     return {
-      calendar: dayOrder.map((day) => ({
-        day,
-        meals: Object.keys(calendar[day]).reduce((meals, meal) => {
-          meals[meal] = calendar[day][meal]
-            ? food[calendar[day][meal]]
-            : null
-  
-          return meals
-        }, {})
-      })),
+        calendar: dayOrder.map((day) => ({
+            day,
+            meals: Object.keys(calendar[day]).reduce((meals, meal) => {
+                meals[meal] = calendar[day][meal]
+                    ? food[calendar[day][meal]]
+                    : null
+
+                return meals
+            }, {})
+        })),
     }
-  }
-  
-  function mapDispatchToProps (dispatch) {
+}
+
+function mapDispatchToProps(dispatch) {
     return {
-      selectRecipe: (data) => dispatch(addRecipe(data)),
-      remove: (data) => dispatch(removeFromCalendar(data))
+        selectRecipe: (data) => dispatch(addRecipe(data)),
+        removeMeal: (data) => dispatch(removeFromCalendar(data))
     }
-  }
-  
-  export const MyMeals = connect(
+}
+
+export const MyMeals = connect(
     mapStateToProps,
     mapDispatchToProps
-  )(MyMeals1)
+)(MyMeals1)

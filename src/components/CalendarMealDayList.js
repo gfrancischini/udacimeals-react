@@ -13,7 +13,7 @@ const MealTypes = ({ mealOrder }) => (
 )
 
 
-export const CalendarMealDayList = ({ calendar, selectMeal}) => {
+export const CalendarMealDayList = ({ calendar, selectMeal, removeMeal}) => {
     const mealOrder = ['breakfast', 'lunch', 'dinner']
     return (
         <div>
@@ -22,7 +22,7 @@ export const CalendarMealDayList = ({ calendar, selectMeal}) => {
                 <div className='days'>
                     {calendar.map(({ day }) => <h3 key={day} className='subheader'>{capitalize(day)}</h3>)}
                 </div>
-                <CalendarMealDay calendar={calendar} mealOrder={mealOrder} selectMeal={selectMeal}/>
+                <CalendarMealDay calendar={calendar} mealOrder={mealOrder} selectMeal={selectMeal} removeMeal={removeMeal}/>
             </div>
         </div>
     );
